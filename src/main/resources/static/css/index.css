@@ -1,0 +1,594 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: darkslateblue;
+
+}
+
+.logo {
+    font-size: 35px;
+    color: white;
+    font-family: "Philosopher", sans-serif;
+
+}
+
+.items {
+    display: flex;
+}
+
+.items div {
+    margin-right: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17.5px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out font-size, text-decoration;
+    color: white;
+}
+
+.items div:hover {
+    color: rgb(255, 102, 0);
+}
+
+.items div:active {
+    color: rgb(255, 102, 0);
+}
+
+#last-div {
+    margin-right: 24px;
+}
+
+.auth {
+    display: flex;
+    align-items: center;
+}
+
+.login-btn,
+.signup-btn,.logout-btn {
+    background-color: white;
+    border: 1.1px solid;
+    cursor: pointer;
+    height: 38px;
+    border-radius: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+    padding: 0 10px;
+}
+.login-btn {
+    color: darkblue;
+    border-color: darkblue;
+}
+
+.signup-btn {
+    color: green;
+    border-color: green;
+}
+.logout-btn {
+    color: red;
+    border-color: red;
+}
+
+.login-btn:hover{
+    background-color: darkblue;
+    border: 1px solid darkblue;
+    color: white;
+}
+
+.signup-btn:hover{
+    background-color: green;
+    border: 1px solid green;
+    color: white;
+}
+.logout-btn:hover{
+    background-color: red;
+    border: 1px solid red;
+    color: white;
+}
+.sidebar{
+    position: fixed;
+    top:0;
+    right:0;
+    display: none;
+    height: 100%;
+    width:250px;
+    background-color: darkslateblue;
+    backdrop-filter: blur(10px);
+    z-index:999;
+}
+.side-items{
+    display: flex;
+    font-size: 19px;
+    flex-direction: column;
+    margin-left: 15px;
+}
+.side-items div{
+    margin: 15px;
+    font-size: 18px;
+    color: white;
+}
+.side-items div:hover{
+    color: rgb(255, 102, 0);
+}
+.close-nav-mob{
+    height: 40px;
+    width:40px;
+    cursor: pointer;
+    height: 40px;
+    width:40px;
+}
+.menu-icon{
+    display: none;
+    cursor: pointer;
+    height: 32px;
+    width:32px;
+    color: white;
+}
+.side-items div{
+    cursor:pointer;
+}
+.desk-auth{
+	display:flex;
+}
+@media (max-width: 1106px) {
+    .items {
+        display: none;
+    }
+    .auth{
+        display: none;
+    }
+    .menu-icon{
+        display: flex;
+    }
+	.desk-auth{
+			display:none;
+		}
+}
+@media screen and (max-width: 415px) {
+    .sidebar{
+        width:100%;
+    }
+}
+.login-btn,
+.signup-btn {
+    background-color: white;
+    border: 1.1px solid;
+    cursor: pointer;
+    height: 38px;
+    border-radius: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+    padding: 0 10px;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.5s ease;
+}
+
+.login-btn::before,
+.signup-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    transition: left 0.5s ease;
+    z-index: -1;
+}
+
+.login-btn::before {
+    background-color: red;
+}
+
+.signup-btn::before {
+    background-color: green;
+}
+
+.login-btn:hover::before,
+.signup-btn:hover::before {
+    left: 0;
+}
+
+.login-btn:focus::before,
+.signup-btn:focus::before {
+    left: -100%;
+}
+
+.login-btn:hover {
+    color: white;
+}
+
+.signup-btn:hover {
+    color: white;
+}
+.main-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+.head-adv {
+    display: flex;
+    border: 1px solid lavender;
+    height: 800px;
+    flex-direction: row;
+    width: 100%;
+}
+
+.head-adv-content {
+    flex: 1;
+    border: 1px solid lavender;
+    background-color: lavender;
+}
+.hac-1{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10.5%;
+}
+#header-ad{
+    font-size:25px;
+    font-weight: bold;
+    font-family: monospace;
+    color: currentColor;
+    letter-spacing: 1.3px;
+    margin-top:50px;
+}
+#header-gateway{
+    font-family: 'Philosopher';
+    color: darkslateblue;
+    font-size: 50px;
+}
+#header-text{
+    font-size: 26px;
+    color: darkgreen;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+        'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.hac-2{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 100px;
+    padding-left: 10%;
+}
+.header-img{
+    height:500px;
+    width:300px;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    animation: shake 1s ease-in-out infinite alternate;
+}
+.Benefits {
+    margin-top: 40px;
+ /* Add margin-top */
+}
+@media screen and (max-width: 860px) {
+    .head-adv {
+        flex-direction: column;
+        margin-bottom: 350px;
+    }
+    .Benefits {
+        margin-top: 30px; /* Ensure margin-top is present for small screens */
+    }
+    .header-img{
+        height:420px;
+        flex-direction: col;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+#why-choose {
+    text-align: center;
+    color: darkslateblue;
+    font-family: cursive;
+    font-family: "Philosopher", sans-serif;
+    font-size:36px;
+    margin:-bottom 40px;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        scale: 0.5;
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+.block {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+    animation-iteration-count: 1;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.benefit-card {
+    height: 400px;
+    width: 400px;
+    background-color: lavender;
+    border-radius: 10px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.benefit-card h1,
+#destinations-title , .book-section-heading{
+    font-family: "Philosopher", sans-serif;
+    ;
+    text-align: center;
+    color: darkslateblue;
+}
+
+.benefit-card div {
+    font-size: 20px;
+    color: cadetblue;
+    text-align: center;
+}
+
+.destinations {
+    background-color: lavender;
+    color: currentColor;
+    height: 1400px;
+    width: 100%;
+}
+
+.benefit-card:hover {
+    animation: shake 1s ease-in-out infinite alternate;
+}
+@keyframes shake {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+@media  screen and (max-width:460px) {
+    .benefit-card {
+        height: 320px;
+        width: 320px;
+        background-color: lavender;
+        border-radius: 10px;
+        margin: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+    .benefit-card h1{
+        font-size:19px;
+    }
+    .benefit-card div {
+        font-size: 17px;
+        color: cadetblue;
+        text-align: center;
+        padding:10px;
+    }
+    .benefit-card img{
+        height:160px;
+        width:100%;
+    }
+}
+@media (max-width:470px) {
+    #header-ad{
+        font-size:18px;
+    }
+    #header-gateway{
+        font-size: 40px;
+    }
+    #header-text{
+        font-size: 21px;
+        
+    }
+}
+.destinations {
+    background-color: lavender;
+    color: currentColor;
+    height: 1400px;
+    width: 100%;
+}
+
+.benefit-card:hover {
+    animation: shake 1s ease-in-out infinite alternate;
+}
+
+#destinations-popular {
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: currentColor;
+    font-family: monospace;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.slider {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slides img {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+}
+
+button.prev,
+button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1;
+}
+
+button.prev {
+    left: 10px;
+    background-color: darkslateblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 16px;
+}
+
+button.next {
+    right: 10px;
+    background-color: darkslateblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 16px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: #7e6097;
+    /* darker lavender shade on hover */
+}
+.move-up{
+    position:fixed;
+    bottom:30px;
+    right:20px;
+    height:50px;
+    width:50px;
+    border-radius: 50%;
+    box-shadow:  0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    cursor:pointer;
+    z-index:1000;
+    background-color: darkslateblue;
+}
+.arrow-upward{
+    font-size: 20px;
+    color: white;
+}
+.book-section-heading{
+    font-size: 34px;
+    font-weight: bold;
+}
+.book-container{
+    background-color: lavender;
+    height:450px;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.booking-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.booking-form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.booking-form input[type="date"] {
+    padding: 10px;
+}
+.booking-form input[type="number"]::-webkit-inner-spin-button,
+.booking-form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.booking-form button {
+    padding: 10px;
+    background-color: cadetblue;
+    border: none;
+    border-radius: 4px;
+    color: white; 
+    font-size: 16px;
+    cursor: pointer;
+}
+.booking-form button:hover{
+    background-color: #d9b3e0; 
+}
+@media (max-width: 600px) {
+    .booking-form {
+        padding: 10px;
+    }
+}
+/* Responsive design for medium screens */
+@media (max-width: 768px) {
+    .book-container { /* Reduce max-width on medium screens */
+        padding: 15px; /* Adjust padding to fit smaller screens */
+    }
+}
+
+/* Responsive design for small screens */
+@media (max-width: 480px) {
+    .book-container {
+         /* Further reduce max-width on small screens */
+        padding: 10px; /* Adjust padding to fit very small screens */
+    }
+
+    input, button {
+        padding: 8px; /* Adjust padding for smaller inputs and buttons */
+    }
+}
+.move-up:hover{
+    opacity:0.55;
+}

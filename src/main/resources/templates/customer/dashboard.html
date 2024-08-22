@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head>
+    <title>Customer Dashboard</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: lavender;
+            font-family: 'Philosopher', sans-serif;
+        }
+
+        .container {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info {
+            padding: 20px;
+            border: 1px solid darkslateblue;
+            border-radius: 8px;
+            background-color: white;
+            margin-bottom: 30px;
+        }
+
+        .user-info div {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .user-info span:first-child {
+            font-weight: bold;
+            color: darkslateblue;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: darkslateblue;
+            color: white;
+        }
+
+        .table tbody tr:nth-child(odd) {
+            background-color: lavender;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: darkslateblue;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">TripTracks</div>
+        <div class="items">
+            <div onclick="window.location.href='/'"><i class="fas fa-home"></i> Home</div>
+            <div onclick="window.location.href='/customer/search-trains'"><i class="fas fa-search"></i> Search Trains</div>
+            <div onclick="window.location.href='/customer/view-all-trains'"><i class="fas fa-train"></i> View All Trains</div>
+        </div>
+        <div class="menu-icon" onclick="showSideBar()">
+            <span class="material-symbols-outlined">menu</span>
+        </div>
+    </div>
+    
+    <div class="sidebar">
+        <div class="side-items">
+            <div class="close-nav-mob" onclick="hideSidebar()">
+                <span class="material-symbols-outlined">close</span>
+            </div>
+            <div onclick="window.location.href='/'"><i class="fas fa-home"></i> Home</div>
+            <div onclick="window.location.href='/customer/search-trains'"><i class="fas fa-search"></i> Search Trains</div>
+            <div onclick="window.location.href='/customer/view-all-trains'"><i class="fas fa-train"></i> View All Trains</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="user-info">
+            <div>
+                <span>Name:</span> <span th:text="${user.name}">John Doe</span>
+            </div>
+            <div>
+                <span>Email:</span> <span th:text="${user.email}">johndoe@example.com</span>
+            </div>
+        </div>
+
+        <div th:if="${noBookingsFound}" class="no-bookings">
+            <h3>No trains booked yet</h3>
+        </div>
+
+        <div th:if="${bookingsFound}">
+            <h3>Your Bookings</h3>
+            <div class="table-container">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Date</th>
+                            <th>Train Name</th>
+                            <th>Seats Booked</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="booking : ${bookings}">
+                            <td th:text="${booking.localDate}">Date</td>
+                            <td th:text="${booking.train.name}">Train Name</td>
+                            <td th:text="${booking.seatsBooked}">Seats Booked</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/auth.jpg') no-repeat center center;
+    background-size: cover;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+
+.auth-container {
+    display: flex;
+    gap: 20px;
+    z-index: 1; /* Ensure it's above the background */
+}
+
+.auth-box {
+    background-color: lavender;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+}
+
+.auth-box h2 {
+    margin-bottom: 20px;
+    color: darkslateblue;
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.auth-box button {
+    background-color: darkslateblue;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.auth-box button:hover {
+    background-color: rgb(90, 90, 220);
+}
+
+.auth-box p {
+    margin-top: 15px;
+}
+
+.auth-box a {
+    color: darkslateblue;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Mobile styles */
+@media (max-width: 600px) {
+    .auth-container {
+        transform: scale(0.8);
+    }
+}
+
+/* Tablet styles */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .auth-container {
+        transform: scale(0.9);
+    }
+}
+
+/* Existing styles */
+
+.auth-box select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* Error messages */
+.text-danger {
+    color: red;
+    font-size: 0.9em;
+}
+
+.text-success {
+    color: green;
+    font-size: 0.9em;
+}
+
+/* Existing mobile and tablet styles */
+
+@media (max-width: 600px) {
+    .auth-container {
+        transform: scale(0.8);
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .auth-container {
+        transform: scale(0.9);
+    }
+}
+

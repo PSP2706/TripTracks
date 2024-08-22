@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Trains</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: lavender;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: darkslateblue;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            display: block;
+            width: calc(100% - 22px);
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: darkcyan;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: seagreen;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: white;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: lavender;
+        }
+
+        h2 {
+            color: #28a745;
+            margin-top: 20px;
+        }
+
+        h3 {
+            color: #dc3545;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin: 20px;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 4px;
+            display: inline-block;
+            max-width: 80%;
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">TripTracks</div>
+        <div class="items">
+            <div onclick="window.location.href='/'"><i class="fas fa-home"></i> Home</div>
+			<div onclick="window.location.href='/customer/view-all-trains'"><i class="fas fa-train"></i> View All Trains</div>
+            <div onclick="window.location.href='/customer/dashboard'"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+        </div>
+        
+        <div class="menu-icon" onclick="showSideBar()">
+            <span class="material-symbols-outlined">menu</span>
+        </div>
+    </div>
+    
+    <div class="sidebar">
+        <div class="side-items">
+            <div class="close-nav-mob" onclick="hideSidebar()">
+                <span class="material-symbols-outlined">close</span>
+            </div>
+            <div onclick="window.location.href='/'"><i class="fas fa-home"></i> Home</div>
+			<div onclick="window.location.href='/customer/view-all-trains'"><i class="fas fa-train"></i> View All Trains</div>
+            <div onclick="window.location.href='/customer/dashboard'"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+            <div>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="logout-btn">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<br><br>
+    <h1 style="font-family: 'Philosopher'; color:darkslateblue">Search Trains</h1>
+    <form th:action="@{/customer/search-trains}" method="post" th:object="${trainSearchDto}">
+        <input type="text" placeholder="Enter Source" th:field="*{source}" required />
+        <input type="text" placeholder="Enter Destination" th:field="*{destination}" required />
+        <button type="submit">Search</button>
+    </form>
+
+    <div th:if="${noTrainsFound}" class="message error">
+        <h3>OOPS! No trains found :(</h3>
+    </div>
+    <div th:if="${successBooking}" class="message success">
+        <h2>Train booked successfully! Have a nice journey :)</h2>
+    </div>
+    <div th:if="${failureBooking}" class="message error">
+        <h2>Failed to book train :(</h2>
+    </div>
+
+    <div th:if="${trainsFound}">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Available Seats</th>
+                    <th>Seats Required</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="train : ${trains}">
+                    <td th:text="${train.id}">ID</td>
+                    <td th:text="${train.name}">Name</td>
+                    <td th:text="${train.source}">Source</td>
+                    <td th:text="${train.destination}">Destination</td>
+                    <td th:text="${train.availableSeats}">Available Seats</td>
+                    <td>
+                        <form th:action="@{/customer/book-searched-train}" method="post" th:object="${bookTrainDto}">
+                            <input type="hidden" name="name" th:value="${train.name}" />
+                            <input type="hidden" name="source" th:value="${train.source}" />
+                            <input type="hidden" name="destination" th:value="${train.destination}" />
+                            <input type="number" name="seatsRequired" placeholder="Seats Required" min="1" max="${train.availableSeats}" required />
+                            <button type="submit">Book</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="/">Go back</a>
+</body>
+</html>

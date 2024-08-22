@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Home</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">TripTracks</div>
+        <div class="items">
+			<div onclick="window.location.href='/customer/dashboard'"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+            <div onclick="window.location.href='/customer/search-trains'"><i class="fas fa-search"></i> Search Trains</div>
+            <div onclick="window.location.href='/customer/view-all-trains'"><i class="fas fa-train"></i> View All Trains</div>
+        </div>
+        <div class="desk-auth">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+        <div class="menu-icon" onclick="showSideBar()">
+            <span class="material-symbols-outlined">menu</span>
+        </div>
+    </div>
+    
+    <div class="sidebar">
+        <div class="side-items">
+            <div class="close-nav-mob" onclick="hideSidebar()">
+                <span class="material-symbols-outlined">close</span>
+            </div>
+            <div onclick="window.location.href='/customer/dashboard'"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+            <div onclick="window.location.href='/customer/search-trains'"><i class="fas fa-search"></i> Search Trains</div>
+            <div onclick="window.location.href='/customer/view-all-trains'"><i class="fas fa-train"></i> View All Trains</div>
+            <div>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="logout-btn">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="head-adv">
+            <div class="head-adv-content hac-1">
+                <div id="header-ad">WELCOME TO TRIPTRACKS, <span id="header-ad" th:text="${userName}"></span>!</div>
+                <br><br>
+                <div id="header-gateway">Customer Panel - Explore and Book Trains</div>
+                <br><br><br>
+                <div id="header-text">Explore available trains, search for specific routes, and book tickets easily using the customer dashboard.</div>
+            </div>
+            <div class="head-adv-content hac-2">
+                <img th:src="@{images/header.png}" alt="TripTracks" class="header-img">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="Benefits" id="benefits">
+        <h1 id="why-choose">Why Choose TripTracks for Customers?</h1>
+    </div>
+    <br>
+    <div class="card-container">
+        <div class="benefit-card block">
+            <img src="images/benefits1.png" alt="" height="200px" width="100%" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <br><br>
+            <h1>Comprehensive Train Listings</h1>
+            <br>
+            <div>Browse through detailed listings of available trains with all necessary information.</div>
+        </div>
+        <div class="benefit-card block">
+            <img src="images/benefits2.png" alt="" height="200px" width="100%" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <br><br>
+            <h1>Effortless Train Search</h1>
+            <br>
+            <div>Quickly find trains based on your preferences using our intuitive search feature.</div>
+        </div>
+        <div class="benefit-card block">
+            <img src="images/benefits3.png" alt="" height="200px" width="100%" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <br><br>
+            <h1>Easy Booking Process</h1>
+            <br>
+            <div>Book your tickets with just a few clicks and receive instant confirmations.</div>
+        </div>
+        <div class="benefit-card block">
+            <img src="images/benefits4.png" alt="" height="200px" width="100%" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <br><br>
+            <h1>24/7 Customer Support</h1>
+            <br>
+            <div>Get help and support anytime for any queries or issues you might have.</div>
+        </div>
+        <div class="benefit-card block">
+            <img src="images/benefits5.png" alt="" height="200px" width="100%" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <br><br>
+            <h1>Real-Time Updates</h1>
+            <br>
+            <div>Stay informed with real-time updates on train schedules and bookings.</div>
+        </div>
+    </div>
+    <br><br>
+    <div class="destinations" id="destinations">
+        <div id="destinations-popular">POPULAR DESTINATIONS</div>
+        <h1 id="destinations-title">Explore Top Travel Destinations</h1>
+        <hr style="display: inline-block; width: 40%; margin-left: 30%;" color="white"><br><br><br>
+        <div class="slider">
+            <div class="slides">
+                <img src="images/howrah.png" alt="Image 1">
+                <img src="images/cuttack.png" alt="Image 2">
+                <img src="images/mumbai.png" alt="Image 3">
+                <img src="images/shimla.png" alt="Image 4">
+            </div>
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+        <div class="places-container">
+            <div class="places"></div>
+            <div class="places"></div>
+            <div class="places"></div>
+            <div class="places"></div>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="move-up" onclick="moveToHeader()">
+        <span class="material-symbols-outlined arrow-upward">arrow_upward</span>
+    </div>
+    <script th:src="@{/js/index.js}"></script>
+</body>
+</html>

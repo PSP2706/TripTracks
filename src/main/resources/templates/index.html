@@ -1,0 +1,227 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head>
+    <title>Index Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello Guest :)</h1>
+    <div sec:authorize="!isAuthenticated()">
+        <form th:action="@{/login}" method="get">
+            <button type="submit">Login</button>
+        </form>
+        <form th:action="@{/register}" method="get">
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+				xmlns:sec="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripTracks</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">TripTracks</div>
+        <div class="items">
+            <div><i class="fas fa-home"></i> Home</div>
+            <div><i class="fas fa-info-circle"></i> About us</div>
+            <div onclick="scrollToSection('benefits')"><i class="fas fa-star"></i> Benefits</div>
+            <div onclick="scrollToSection('destinations')"><i class="fas fa-map-marker-alt"></i> Destinations</div>
+            <div><i class="fas fa-envelope"></i> Contact</div>
+            <div id="last-div" onclick="scrollToSection('book-section')"><i class="fas fa-ticket-alt"></i> Book</div>
+        </div>
+        <div class="desk-auth"  sec:authorize="!isAuthenticated()">
+            <form action="#" method="get" th:action="@{/login}" target="_self">
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <form action="#" method="get" th:action="@{/register}" target="_self">
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+        </div>
+        <div class="menu-icon" onclick="showSideBar()">
+            <span class="material-symbols-outlined">menu</span>
+        </div>
+    </div>
+    
+    <div class="sidebar">
+        <div class="side-items">
+            <div class="close-nav-mob" onclick="hideSidebar()">
+                <span class="material-symbols-outlined">close</span>
+            </div>
+            <div><i class="fas fa-home"></i> Home</div>
+            <div><i class="fas fa-info-circle"></i> About us</div>
+            <div onclick="scrollToSectionSidebar('benefits')"><i class="fas fa-star"></i> Benefits</div>
+            <div onclick="scrollToSectionSidebar('destinations')"><i class="fas fa-map-marker-alt"></i> Destinations</div>
+            <div><i class="fas fa-envelope"></i> Contact</div>
+            <div id="last-div" onclick="scrollToSectionSidebar('book-section')"><i class="fas fa-ticket-alt"></i> Book</div>
+            <div sec:authorize="!isAuthenticated()">
+                <form th:action="@{/login}" method="get" target="_self">
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+                <br>
+                <form th:action="@{/register}" method="get" target="_self">
+                    <button type="submit" class="signup-btn">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="head-adv">
+            <div class="head-adv-content hac-1">
+                <div id="header-ad">BOOK YOUR TRAIN TICKETS EASILY!</div>
+                <br><br>
+                <div id="header-gateway">TripTracks-Your gateway to easy train travel</div>
+                <br><br><br>
+                <div id="header-text">Join TripTracks and experience the ultimate convenience in train ticket booking. Whether you're traveling for business or leisure, we offer a seamless and hassle-free booking experience.</div>
+            </div>
+            <div class="head-adv-content hac-2">
+                <img th:src="@{images/header.png}" alt="TripTracks" class="header-img">
+            </div>
+        </div>
+        <br>
+        <div class="Benefits" id="benefits">
+            <h1 id="why-choose">Why Choose TripTracks?</h1>
+        </div>
+    </div>
+    <br>
+    <div class="card-container">
+        <div class="benefit-card block">
+            <img src="images/benefits1.png" alt="" height="200px" width="100%" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <br><br>
+            <h1>User-Friendly Interface</h1>
+            <br>
+            <div>Enjoy a smooth and easy booking process with our intuitive and user-friendly interface.</div>
+        </div>
+        <div class="benefit-card block">
+            <img src="images/benefits2.png" alt="" height="200px" width="100%" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <br><br>
+            <h1>Wide Range of Destinations</h1>
+            <br>
+            <div>Explore a vast network of train routes and destinations, ensuring you can travel wherever you need to go.</div>
+        </div>
+        <div class="benefit-card block">
+            <img src="images/benefits3.png" alt="" height="200px" width="100%" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <br><br>
+            <h1>Secure Payments</h1>
+            <br>
+            <div>Book with confidence using our secure payment gateways, ensuring your personal information is safe.</div>
+        </div>
+        <div class="benefit-card block">
+            <img src="images/benefits4.png" alt="" height="200px" width="100%" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <br><br>
+            <h1>24/7 Customer Support</h1>
+            <br>
+            <div>Our dedicated support team is available around the clock to assist you with any queries or issues.</div>
+        </div>
+        <div class="benefit-card block">
+            <img src="images/benefits5.png" alt="" height="200px" width="100%" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <br><br>
+            <h1>Real-Time Updates</h1>
+            <br>
+            <div>Receive real-time updates on train schedules, delays, and changes to keep your travel plans on track.</div>
+        </div>
+    </div>
+    <br><br>
+    <div class="destinations" id="destinations">
+        <div id="destinations-popular">POPULAR DESTINATIONS</div>
+        <h1 id="destinations-title">Explore Top Travel Destinations</h1>
+        <hr style="display: inline-block; width: 40%;margin-left: 30%;" color="white"><br><br><br>
+        <div class="slider">
+            <div class="slides">
+                <img src="images/howrah.png" alt="Image 1">
+                <img src="images/cuttack.png" alt="Image 2">
+                <img src="images/mumbai.png" alt="Image 3">
+                <img src="images/shimla.png" alt="Image 4">
+            </div>
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+        <div class="places-container">
+            <div class="places"></div>
+            <div class="places"></div>
+            <div class="places"></div>
+            <div class="places"></div>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="book-section-heading" id="book-section">
+        Book Your Tickets
+    </div>
+    <br><br>
+    <br><br>
+    <div class="move-up" onclick="moveToHeader()">
+        <span class="material-symbols-outlined arrow-upward">arrow_upward</span>
+    </div>
+    <script th:src="@{/js/index.js}"></script>
+</body>
+</html>

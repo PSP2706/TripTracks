@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Trains</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="css/index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="css/index.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="css/index.css">
+	    <link rel="preconnect" href="https://fonts.googleapis.com">
+	    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        body {
+            background-color: lavender;
+            font-family: 'Philosopher', sans-serif;
+            font-weight: 400;
+        }
+        table {
+            background-color: darkslateblue;
+            color: white;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+			color: white;
+        }
+        table th {
+            background-color: #4e3d6a;
+			color: white; /* Darker shade for the header */
+        }
+        table tr:nth-child(even) {
+            background-color: #3b2e54; /* Darker row for even rows */
+        }
+        table tr:nth-child(odd) {
+            background-color: #2a1d39; /* Slightly darker row for odd rows */
+        }
+        table tr:hover {
+            background-color: #4a3a6b; /* Hover effect */
+        }
+        
+        h1 {
+            color: darkslateblue;
+            text-align: center;
+        }
+        .no-trains {
+            color: darkslateblue;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">TripTracks</div>
+        <div class="items">
+			<div onclick="window.location.href='/'"><i class="fas fa-home"></i> Home</div>
+			<div onclick="window.location.href='/admin/add-train'"><i class="fas fa-plus-circle"></i> Add Train</div>
+			<div id="last-div" onclick="window.location.href='/admin/dashboard'"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+        </div>
+        
+        <div class="menu-icon" onclick="showSideBar()">
+            <span class="material-symbols-outlined">menu</span>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="side-items">
+            <div class="close-nav-mob" onclick="hideSidebar()">
+                <span class="material-symbols-outlined">close</span>
+            </div>
+			<div onclick="window.location.href='/'"><i class="fas fa-home"></i> Home</div>
+			<div onclick="window.location.href='/admin/add-train'"><i class="fas fa-plus-circle"></i> Add Train</div>
+			<div id="last-div" onclick="window.location.href='/admin/dashboard'"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+
+            
+        </div>
+    </div>
+
+    <br><br>
+    <h1 style="font-family: 'Philosopher', sans-serif;">View All Trains</h1><br><br>
+    <div th:if="${noTrainsFound}" class="no-trains">OOPS! Looks like you have not scheduled any trains yet...</div>
+    <div th:if="${trainsFound}">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Available Seats</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="train : ${trains}">
+                    <td th:text="${train.id}">ID</td>
+                    <td th:text="${train.name}">Name</td>
+                    <td th:text="${train.source}">Source</td>
+                    <td th:text="${train.destination}">Destination</td>
+                    <td th:text="${train.availableSeats}">Available Seats</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <a href="/">Go Back</a>
+</body>
+</html>
